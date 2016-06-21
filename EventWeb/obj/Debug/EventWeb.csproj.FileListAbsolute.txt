@@ -85,4 +85,3 @@ E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.csproj.GenerateResou
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddGigTable.resources
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.OverrideConventionsForGigsAndGenres.resources
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.PopulateGenresTable.resources
-E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.PopulateGenresTable1.resources
