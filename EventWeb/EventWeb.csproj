@@ -202,21 +202,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606171527045_InitialModel.cs" />
-    <Compile Include="Migrations\201606171527045_InitialModel.Designer.cs">
-      <DependentUpon>201606171527045_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606180451064_AddGigTable.cs" />
-    <Compile Include="Migrations\201606180451064_AddGigTable.Designer.cs">
-      <DependentUpon>201606180451064_AddGigTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606180739063_OverrideConventionsForGigsAndGenres.cs" />
-    <Compile Include="Migrations\201606180739063_OverrideConventionsForGigsAndGenres.Designer.cs">
-      <DependentUpon>201606180739063_OverrideConventionsForGigsAndGenres.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606180802355_PopulateGenresTable.cs" />
-    <Compile Include="Migrations\201606180802355_PopulateGenresTable.Designer.cs">
-      <DependentUpon>201606180802355_PopulateGenresTable.cs</DependentUpon>
+    <Compile Include="Migrations\201606221009068_InitialState.cs" />
+    <Compile Include="Migrations\201606221009068_InitialState.Designer.cs">
+      <DependentUpon>201606221009068_InitialState.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -303,17 +291,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606171527045_InitialModel.resx">
-      <DependentUpon>201606171527045_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606180451064_AddGigTable.resx">
-      <DependentUpon>201606180451064_AddGigTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606180739063_OverrideConventionsForGigsAndGenres.resx">
-      <DependentUpon>201606180739063_OverrideConventionsForGigsAndGenres.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606180802355_PopulateGenresTable.resx">
-      <DependentUpon>201606180802355_PopulateGenresTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606221009068_InitialState.resx">
+      <DependentUpon>201606221009068_InitialState.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -80,8 +80,5 @@ E:\VisualStudioProject\EventWeb\EventWeb\bin\Microsoft.Owin.Security.MicrosoftAc
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.csprojResolveAssemblyReference.cache
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.dll
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.pdb
-E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.InitialModel.resources
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.InitialState.resources
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.csproj.GenerateResource.Cache
-E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddGigTable.resources
-E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.OverrideConventionsForGigsAndGenres.resources
-E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.PopulateGenresTable.resources
