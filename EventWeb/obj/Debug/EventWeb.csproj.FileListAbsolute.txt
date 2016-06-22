@@ -82,3 +82,10 @@ E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.dll
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.pdb
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.InitialState.resources
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.csproj.GenerateResource.Cache
+<<<<<<< HEAD
+=======
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddGigTable.resources
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.OverrideConventionsForGigsAndGenres.resources
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.PopulateGenresTable.resources
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddForeignKeyToGig.resources
+>>>>>>> bea4ca28453729d004c49bea2965291f28d5a91a
