@@ -33,11 +33,7 @@ namespace EventWeb.Controllers
                 ArtistId = User.Identity.GetUserId(),
                 GenreId = viewModel.Genre,
                 Venue = viewModel.Venue,
-<<<<<<< HEAD
-                DateTime = viewModel.GetDateTime()
-=======
-                DateTime = DateTime.Parse($"{viewModel.Date} {viewModel.Time}")
->>>>>>> bea4ca28453729d004c49bea2965291f28d5a91a
+                DateTime = viewModel.DateTime
             };
 
             _context.Gigs.Add(gig);
