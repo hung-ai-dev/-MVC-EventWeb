@@ -11,11 +11,11 @@ namespace EventWeb.ViewModels
     {
         [Required]
         public string Venue { get; set; }
-
+        
         [Required]
-        [FutureDay]
         public string Date { get; set; }
 
+        [ValidTime]
         [Required]
         public string Time { get; set; }
 
