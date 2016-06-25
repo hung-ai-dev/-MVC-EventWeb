@@ -78,8 +78,9 @@ E:\VisualStudioProject\EventWeb\EventWeb\bin\Microsoft.Owin.Security.Google.xml
 E:\VisualStudioProject\EventWeb\EventWeb\bin\Microsoft.Owin.Security.Twitter.xml
 E:\VisualStudioProject\EventWeb\EventWeb\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.InitialState.resources
-E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddForeignKeyToGig.resources
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.csproj.GenerateResource.Cache
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.dll
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.pdb
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.csprojResolveAssemblyReference.cache
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddArtistAndGenre.resources
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddUserName.resources

@@ -9,6 +9,8 @@ namespace EventWeb.Models
 
         [Required]
         public string ArtistId { get; set; }
+
+        public ApplicationUser Artist { get; set; }
         public DateTime DateTime { get; set; }
 
         [Required, MaxLength(255)]
@@ -16,5 +18,6 @@ namespace EventWeb.Models
 
         [Required]
         public byte GenreId { get; set; }
+        public Genre Genre { get; set; }
     }
 }
