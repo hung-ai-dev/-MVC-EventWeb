@@ -19,7 +19,9 @@ namespace EventWeb.Controllers
 
         public ActionResult Index()
         {
-            var upcomingGig = _context.Gigs.Include(g => g.Artist).Where(g => g.DateTime > DateTime.Now);
+            var upcomingGig = _context.Gigs.Include(g => g.Artist)
+                                            .Include(g => g.Genre)
+                                            .Where(g => g.DateTime > DateTime.Now);
             return View(upcomingGig);
         }
 
