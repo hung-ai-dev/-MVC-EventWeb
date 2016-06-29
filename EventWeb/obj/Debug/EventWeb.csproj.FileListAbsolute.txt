@@ -84,3 +84,11 @@ E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.pdb
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.csprojResolveAssemblyReference.cache
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddArtistAndGenre.resources
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddUserName.resources
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddAttendance.resources
+E:\VisualStudioProject\EventWeb\EventWeb\bin\System.Net.Http.Formatting.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\System.Web.Http.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\System.Web.Http.WebHost.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\System.Net.Http.Formatting.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\System.Web.Http.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\System.Web.Http.WebHost.xml
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddFollowing.resources

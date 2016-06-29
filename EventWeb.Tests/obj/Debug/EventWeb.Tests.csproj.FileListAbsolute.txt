@@ -54,3 +54,9 @@ E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\Microsoft.Owin.Host.Sys
 E:\VisualStudioProject\EventWeb\EventWeb.Tests\obj\Debug\EventWeb.Tests.csprojResolveAssemblyReference.cache
 E:\VisualStudioProject\EventWeb\EventWeb.Tests\obj\Debug\EventWeb.Tests.dll
 E:\VisualStudioProject\EventWeb\EventWeb.Tests\obj\Debug\EventWeb.Tests.pdb
+E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\System.Web.Http.dll
+E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\System.Web.Http.WebHost.dll
+E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\System.Net.Http.Formatting.dll
+E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\System.Web.Http.xml
+E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\System.Web.Http.WebHost.xml
+E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\System.Net.Http.Formatting.xml
