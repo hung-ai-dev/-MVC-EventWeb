@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EventWeb.Models;
+using EventWeb.ViewModels;
 
 namespace EventWeb.Controllers
 {
@@ -22,7 +23,14 @@ namespace EventWeb.Controllers
             var upcomingGig = _context.Gigs.Include(g => g.Artist)
                                             .Include(g => g.Genre)
                                             .Where(g => g.DateTime > DateTime.Now);
-            return View(upcomingGig);
+            var viewModel = new GigsViewModel()
+            {
+                UpComingGigs = upcomingGig,
+                ShowData = User.Identity.IsAuthenticated,
+                Heading = "Home"
+            };
+
+            return View("Gigs", viewModel);
         }
 
         public ActionResult About()

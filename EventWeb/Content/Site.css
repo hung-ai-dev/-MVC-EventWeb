@@ -28,6 +28,10 @@ textarea {
     max-width: 280px;
 }
 
+.voffset {
+    margin-top: 30px;
+}
+
 /*Bootstrap override*/
 .navbar-inverse {
     background-color: #ff4342;
@@ -88,6 +92,14 @@ h6,
 
 /*  */
 
+.following {
+    list-style: none;
+}
+
+.following > li {
+    
+}
+
 .gigs {
     list-style: none;
 }
@@ -101,7 +113,7 @@ h6,
         position: absolute;
         top: 0;
         left: 70px;
-        width: 130px;
+        width: 145px;
     }
         .gigs > li .details .artist {
             font-weight: bold;
@@ -116,6 +128,7 @@ h6,
         background-color: red;
         color: white;
         width: 60px;
+        height: 65px;
         text-align: center;
         -ms-border-radius: 10px;
         border-radius: 10px;
@@ -132,6 +145,7 @@ h6,
             font-size: 18px;
             background-color: #EAEAEA;
             color: #333;
+            height: 42px;
             padding: 5px 10px;
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
@@ -140,4 +154,8 @@ h6,
 .btn {
     -ms-border-radius: 9px;
     border-radius: 9px;
+}
+
+button {
+    margin-top: -7px;
 }

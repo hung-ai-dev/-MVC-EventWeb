@@ -1,0 +1,16 @@
+﻿@model EventWeb.ViewModels.FollowingsViewModel
+@{
+    ViewBag.Title = "Following";
+}
+
+<h2>Following</h2>
+
+@Model.Followees.Count
+
+<ul class="following">
+    @foreach (var item in Model.Followees)
+    {
+        <li>@item.UserName</li>
+    }
+</ul>
+
