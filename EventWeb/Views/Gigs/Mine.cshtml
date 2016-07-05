@@ -1,0 +1,34 @@
+﻿@using System.Globalization
+@using EventWeb.Models
+@model IEnumerable<EventWeb.Models.Gig>
+@{
+    ViewBag.Title = "My Event";
+}
+
+<ul class="gigs voffset">
+    @foreach (var item in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @item.DateTime.ToString("MMM", CultureInfo.CreateSpecificCulture("en-us"))
+                </div>
+                <div class="day">
+                    @item.DateTime.ToString("d ")
+                </div>
+            </div>
+            
+            <div class="details">
+                <span class="artist">
+                    @item.Artist.Name
+                </span>
+                <span class="genre">
+                    @item.Genre.Name
+                </span>
+                <div class="actions">
+                    @Html.ActionLink("Edit", "Edit", new {Id = item.Id})
+                </div>
+            </div>
+        </li>
+    }
+</ul>
