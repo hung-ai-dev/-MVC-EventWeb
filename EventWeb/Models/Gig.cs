@@ -19,5 +19,6 @@ namespace EventWeb.Models
         [Required]
         public byte GenreId { get; set; }
         public Genre Genre { get; set; }
+        public bool IsCanceled { get; set; }
     }
 }

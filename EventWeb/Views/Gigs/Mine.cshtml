@@ -1,4 +1,6 @@
-﻿@using System.Globalization
+﻿@using System.Diagnostics
+@using System.Globalization
+@using System.Web.UI.WebControls
 @using EventWeb.Models
 @model IEnumerable<EventWeb.Models.Gig>
 @{
@@ -17,7 +19,7 @@
                     @item.DateTime.ToString("d ")
                 </div>
             </div>
-            
+
             <div class="details">
                 <span class="artist">
                     @item.Artist.Name
@@ -27,8 +29,57 @@
                 </span>
                 <div class="actions">
                     @Html.ActionLink("Edit", "Edit", new {Id = item.Id})
+                    <a href="#" class="js-cancel-gig" data-gig-id="@item.Id">Cancel</a>
+                    @{
+                        Debug.WriteLine(@item.Id);
+                    }
                 </div>
             </div>
         </li>
     }
 </ul>
+@section scripts
+{
+    <script>
+        $(document).ready(function()
+        {
+            $(".js-cancel-gig").click(function (e) {
+                bootbox.dialog({
+                    message: "Are you sure you want to cancel this event",
+                    title: "Confirm",
+                    buttons: {
+                        no: {
+                            label: "No!",
+                            className: "btn-success",
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Yes!",
+                            className: "btn-danger",
+                            callback: function () {
+                                var $button = $(e.target);
+                                $.ajax({
+                                    url: "/api/gigs",
+                                    type: "DELETE",
+                                    data: { GigId: $button.attr("data-gig-id") },
+                                    success: function () {
+                                        $button.parents("li")
+                                            .fadeOut(function () {
+                                                $(this).remove();
+                                            });
+                                    },
+                                    error: function () {
+                                        alert("Something failed!");
+                                    }
+                                });
+
+                            }
+                        },
+                    }
+                });
+            });
+        });
+    </script>
+}

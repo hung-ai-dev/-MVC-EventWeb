@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Diagnostics;
 using EventWeb.Models;
 using EventWeb.ViewModels;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace EventWeb.Controllers
             var userId = User.Identity.GetUserId();
             var gigs = _context.Attendances.Where(u => u.AttendeeId == userId).Select(g => g.Gig)
                 .Include(g => g.Artist).Include(g => g.Genre).ToList();
+            
             var viewModel = new GigsViewModel()
             {
                 UpComingGigs = gigs,
@@ -38,9 +40,11 @@ namespace EventWeb.Controllers
         public ActionResult Mine()
         {
             var userId = User.Identity.GetUserId();
-            var gigs =
-                _context.Gigs.Where(u => u.ArtistId == userId && u.DateTime > DateTime.Now).Include(g => g.Artist)
+            var gigs = _context.Gigs.Where(u => u.ArtistId == userId && u.DateTime > DateTime.Now && !u.IsCanceled)
+                    .Include(g => g.Artist)
                     .Include(g => g.Genre).ToList();
+            foreach (var item in gigs)
+                Debug.WriteLine(item.Id);
             return View(gigs);
         }
 

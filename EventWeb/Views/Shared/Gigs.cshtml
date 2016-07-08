@@ -20,15 +20,20 @@
                 </div>
             </div>
             <div class="details">
+                @if (item.IsCanceled)
+                {
+                    <span class="label label-warning pull-right">Canceled</span>
+                }
                 <span class="artist">
-                    @item.Venue
-                    @if (Model.ShowData) {
+                    @item.Artist.Name
+                    @if (Model.ShowData)
+                    {
                         <button data-user-info="@item.ArtistId" class="pull-right btn btn-sm btn-link js-toggle-follow">Follow</button>
                     }
                 </span>
                 <span class="genre">
                     @item.Genre.Name
-                    @if (Model.ShowData)
+                    @if (Model.ShowData && !item.IsCanceled)
                     {
                         <button data-gig-info="@item.Id" class="pull-right btn btn-default btn-sm js-toggle-attendance">Going ?</button>
                     }
@@ -39,38 +44,40 @@
 </ul>
 @section scripts {
     <script>
-        $(document).ready(function() {
-            $(".js-toggle-attendance").click(function(e) {
+        $(document).ready(function () {
+            $(".js-toggle-attendance").click(function (e) {
                 var $button = $(e.target);
-                $.post("/api/attendances",
-                    {
-                        gigId: $button.attr("data-gig-info")
-                    })
-                .done(function() {
+                $.ajax({
+                    url: "/api/attendances",
+                    type: "POST",
+                    data: { GigId: $button.attr("data-gig-info") },
+                    success: function () {
                         $button.removeClass("btn-default")
-                               .addClass("btn-info")
-                               .text("Going");
-                    })
-                .fail(function() {
+                            .addClass("btn-info")
+                            .text("Going");
+                    },
+                    error: function () {
                         alert("Something failed!");
-                    })
-            })
-        })
+                    }
+                });
+            });
+        });
 
-        $(document).ready(function() {
-            $(".js-toggle-follow").click(function(e) {
+        $(document).ready(function () {
+            $(".js-toggle-follow").click(function (e) {
                 var $button = $(e.target);
-                $.post("/api/followings",
-                    {
-                        followeeId: $button.attr("data-user-info")
-                    })
-                .done(function() {
+                $.ajax({
+                    url: "/api/followings",
+                    type: "POST",
+                    data: { followeeId: $button.attr("data-user-info") },
+                    success: function () {
                         $button.text("Following");
-                    })
-                .fail(function() {
+                    },
+                    error: function () {
                         alert("Something failed!");
-                    })
-            })
-        })
+                    }
+                });
+            });
+        });
     </script>
 }

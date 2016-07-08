@@ -211,6 +211,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\AttendancesController.cs" />
     <Compile Include="Controllers\API\FollowingsController.cs" />
+    <Compile Include="Controllers\API\GigsController.cs" />
+    <Compile Include="Dtos\GigDto.cs" />
+    <Compile Include="Migrations\201607060202277_IsCancelGig.cs" />
+    <Compile Include="Migrations\201607060202277_IsCancelGig.Designer.cs">
+      <DependentUpon>201607060202277_IsCancelGig.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\FollowingsViewModel.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -266,6 +272,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -347,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606290254454_AddFollowing.resx">
       <DependentUpon>201606290254454_AddFollowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607060202277_IsCancelGig.resx">
+      <DependentUpon>201607060202277_IsCancelGig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
