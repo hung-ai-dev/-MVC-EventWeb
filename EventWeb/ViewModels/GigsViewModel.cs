@@ -12,5 +12,6 @@ namespace EventWeb.ViewModels
         public IEnumerable<Gig> UpComingGigs { get; set; }
         public bool ShowData { get; set; }
         public string Heading { get; set; }
+        public object SearchKey { get; set; }
     }
 }

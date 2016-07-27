@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
 using EventWeb.Dtos;
@@ -21,8 +23,16 @@ namespace EventWeb.Controllers.API
         {
             Debug.WriteLine(gigDto.GigId);
             var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs.Single(g => g.Id == gigDto.GigId && g.ArtistId == userId);
-            gig.IsCanceled = true;
+
+            var gig = _context.Gigs
+                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .Single(g => g.Id == gigDto.GigId && g.ArtistId == userId);
+
+            if (gig.IsCanceled)
+                return NotFound();
+
+            gig.Cancel();
+
             _context.SaveChanges();
             return Ok();
         }

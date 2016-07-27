@@ -93,3 +93,6 @@ E:\VisualStudioProject\EventWeb\EventWeb\bin\System.Web.Http.xml
 E:\VisualStudioProject\EventWeb\EventWeb\bin\System.Web.Http.WebHost.xml
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.AddFollowing.resources
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.IsCancelGig.resources
+E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.Notification.resources
+E:\VisualStudioProject\EventWeb\EventWeb\bin\AutoMapper.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\AutoMapper.xml
