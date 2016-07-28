@@ -62,3 +62,5 @@ E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\System.Web.Http.WebHost
 E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\System.Net.Http.Formatting.xml
 E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\AutoMapper.dll
 E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\AutoMapper.xml
+E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\nunit.framework.dll
+E:\VisualStudioProject\EventWeb\EventWeb.Tests\bin\Debug\nunit.framework.xml

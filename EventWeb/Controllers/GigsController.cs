@@ -138,9 +138,11 @@ namespace EventWeb.Controllers
             return RedirectToAction("Mine", "Gigs");
         }
 
-        public ActionResult Search()
+        [HttpPost]
+        public ActionResult Search(GigsViewModel viewModel)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine(viewModel.SearchKey);
+            return RedirectToAction("Index", "Home", new {query = viewModel.SearchKey});
         }
     }
 }

@@ -96,3 +96,5 @@ E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.IsCancelG
 E:\VisualStudioProject\EventWeb\EventWeb\obj\Debug\EventWeb.Migrations.Notification.resources
 E:\VisualStudioProject\EventWeb\EventWeb\bin\AutoMapper.dll
 E:\VisualStudioProject\EventWeb\EventWeb\bin\AutoMapper.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\nunit.framework.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\nunit.framework.xml
