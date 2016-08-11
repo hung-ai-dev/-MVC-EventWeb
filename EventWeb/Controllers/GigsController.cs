@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Globalization;
+using Microsoft.ApplicationInsights.Web;
 
 namespace EventWeb.Controllers
 {
@@ -143,6 +144,24 @@ namespace EventWeb.Controllers
         {
             Debug.WriteLine(viewModel.SearchKey);
             return RedirectToAction("Index", "Home", new {query = viewModel.SearchKey});
+        }
+
+        public ActionResult Details(int id)
+        {
+            var gig = _context.Gigs
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .SingleOrDefault(g => g.Id == id);
+            if (gig == null)
+                return HttpNotFound();
+            var userId = User.Identity.GetUserId();
+            var details = new GigDetailsViewModel()
+            {
+                Gig = gig,
+                IsAttending = _context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == id),
+                IsFollowing = _context.Followings.Any(a => a.FolloweeId == gig.ArtistId && a.FollowerId == userId)
+            };
+            return View(details);
         }
     }
 }

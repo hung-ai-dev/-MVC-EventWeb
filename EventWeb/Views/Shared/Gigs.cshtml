@@ -11,7 +11,7 @@
 {
     <div class="form-group">
         <div class="input-group" id="searchGigs">
-            @Html.TextBoxFor(m => m.SearchKey, new {@class="form-control"})
+            @Html.TextBoxFor(m => m.SearchKey, new { @class = "form-control" })
             <span class="input-group-addon">
                 <i class="glyphicon glyphicon-search"></i>
             </span>
@@ -37,7 +37,9 @@
                     <span class="label label-warning pull-right">Canceled</span>
                 }
                 <span class="artist">
-                    @item.Artist.Name
+                    <a href="@Url.Action("Details", "Gigs", new {id = @item.Id})">
+                        @item.Artist.Name
+                    </a>
                     @if (Model.ShowData)
                     {
                         <button data-user-info="@item.ArtistId" class="pull-right btn btn-sm btn-link js-toggle-follow">Follow</button>
@@ -47,7 +49,11 @@
                     @item.Genre.Name
                     @if (Model.ShowData && !item.IsCanceled)
                     {
-                        <button data-gig-info="@item.Id" class="pull-right btn btn-default btn-sm js-toggle-attendance">Going ?</button>
+                        <button data-gig-info="@item.Id" class="pull-right btn
+                                @(Model.AttendanceLookup.Contains(item.Id) ? "btn-info" : "btn-default ")
+                                btn-sm js-toggle-attendance">
+                            Going ?
+                        </button>
                     }
                 </span>
             </div>
@@ -56,40 +62,59 @@
 </ul>
 @section scripts {
     <script>
-        $(document).ready(function () {
-            $(".js-toggle-attendance").click(function (e) {
-                var $button = $(e.target);
-                $.ajax({
-                    url: "/api/attendances",
-                    type: "POST",
-                    data: { GigId: $button.attr("data-gig-info") },
-                    success: function () {
-                        $button.removeClass("btn-default")
-                            .addClass("btn-info")
-                            .text("Going");
-                    },
-                    error: function () {
-                        alert("Something failed!");
-                    }
-                });
+        $(document)
+            .ready(function() {
+                $(".js-toggle-attendance")
+                    .click(function(e) {
+                        var $button = $(e.target);
+                        if ($button.hasClass("btn-default")) {
+                            $.ajax({
+                                url: "/api/attendances",
+                                type: "POST",
+                                data: { GigId: $button.attr("data-gig-info") },
+                                success: function() {
+                                    $button.removeClass("btn-default")
+                                        .addClass("btn-info")
+                                        .text("Going");
+                                },
+                                error: function() {
+                                    alert("Something failed!");
+                                }
+                            });
+                        } else {
+                            $.ajax({
+                                url: "/api/attendances/" + $button.attr("data-gig-info"),
+                                type: "DELETE",
+                                success: function() {
+                                    $button.removeClass("btn-info")
+                                        .addClass("btn-default")
+                                        .text("Going ?")
+                                },
+                                error: function() {
+                                    alert("Something failed!");
+                                }
+                            });
+                        }
+                    });
             });
-        });
 
-        $(document).ready(function () {
-            $(".js-toggle-follow").click(function (e) {
-                var $button = $(e.target);
-                $.ajax({
-                    url: "/api/followings",
-                    type: "POST",
-                    data: { followeeId: $button.attr("data-user-info") },
-                    success: function () {
-                        $button.text("Following");
-                    },
-                    error: function () {
-                        alert("Something failed!");
-                    }
-                });
+        $(document)
+            .ready(function() {
+                $(".js-toggle-follow")
+                    .click(function(e) {
+                        var $button = $(e.target);
+                        $.ajax({
+                            url: "/api/followings",
+                            type: "POST",
+                            data: { followeeId: $button.attr("data-user-info") },
+                            success: function() {
+                                $button.text("Following");
+                            },
+                            error: function() {
+                                alert("Something failed!");
+                            }
+                        });
+                    });
             });
-        });
     </script>
 }

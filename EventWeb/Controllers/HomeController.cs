@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using EventWeb.Models;
 using EventWeb.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace EventWeb.Controllers
 {
@@ -33,11 +34,16 @@ namespace EventWeb.Controllers
                                                     g.Genre.Name.Contains(query));   
             };
 
+            var userId = User.Identity.GetUserId();
+            var attendances = _context.Attendances.Where(a => a.AttendeeId == userId)
+                .ToList().ToLookup(a => a.GigId);
+
             var viewModel = new GigsViewModel()
             {
                 UpComingGigs = upcomingGig,
                 ShowData = User.Identity.IsAuthenticated,
-                Heading = "Home"
+                Heading = "Home",
+                AttendanceLookup = attendances
             };
 
             return View("Gigs", viewModel);
@@ -55,6 +61,12 @@ namespace EventWeb.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Details(int id)
+        {
+            var gig = _context.Gigs.Where(g => g.Id == id);
+            return View(gig);
         }
     }
 }

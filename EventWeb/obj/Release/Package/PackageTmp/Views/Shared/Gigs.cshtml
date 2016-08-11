@@ -1,0 +1,95 @@
+﻿@using System.Globalization
+@using EventWeb.Models
+@model EventWeb.ViewModels.GigsViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>@Model.Heading</h2>
+
+@using (Html.BeginForm("Search", "Gigs"))
+{
+    <div class="form-group">
+        <div class="input-group" id="searchGigs">
+            @Html.TextBoxFor(m => m.SearchKey, new {@class="form-control"})
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    </div>
+}
+
+<ul class="gigs voffset">
+    @foreach (var item in Model.UpComingGigs)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @item.DateTime.ToString("MMM", CultureInfo.CreateSpecificCulture("en-us"))
+                </div>
+                <div class="day">
+                    @item.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                @if (item.IsCanceled)
+                {
+                    <span class="label label-warning pull-right">Canceled</span>
+                }
+                <span class="artist">
+                    @item.Artist.Name
+                    @if (Model.ShowData)
+                    {
+                        <button data-user-info="@item.ArtistId" class="pull-right btn btn-sm btn-link js-toggle-follow">Follow</button>
+                    }
+                </span>
+                <span class="genre">
+                    @item.Genre.Name
+                    @if (Model.ShowData && !item.IsCanceled)
+                    {
+                        <button data-gig-info="@item.Id" class="pull-right btn btn-default btn-sm js-toggle-attendance">Going ?</button>
+                    }
+                </span>
+            </div>
+        </li>
+    }
+</ul>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-attendance").click(function (e) {
+                var $button = $(e.target);
+                $.ajax({
+                    url: "/api/attendances",
+                    type: "POST",
+                    data: { GigId: $button.attr("data-gig-info") },
+                    success: function () {
+                        $button.removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Going");
+                    },
+                    error: function () {
+                        alert("Something failed!");
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $(".js-toggle-follow").click(function (e) {
+                var $button = $(e.target);
+                $.ajax({
+                    url: "/api/followings",
+                    type: "POST",
+                    data: { followeeId: $button.attr("data-user-info") },
+                    success: function () {
+                        $button.text("Following");
+                    },
+                    error: function () {
+                        alert("Something failed!");
+                    }
+                });
+            });
+        });
+    </script>
+}

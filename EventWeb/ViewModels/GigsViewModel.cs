@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using EventWeb.Models;
 
 namespace EventWeb.ViewModels
@@ -13,5 +14,6 @@ namespace EventWeb.ViewModels
         public bool ShowData { get; set; }
         public string Heading { get; set; }
         public string SearchKey { get; set; }
+        public ILookup<int, Attendance> AttendanceLookup { get; set; }
     }
 }

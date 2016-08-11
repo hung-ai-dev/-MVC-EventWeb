@@ -33,5 +33,18 @@ namespace EventWeb.Controllers.API
             _context.SaveChanges();
             return Ok();
         }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteAttend(int id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var att = _context.Attendances.SingleOrDefault(a => a.AttendeeId == userId && a.GigId == id);
+            if (att == null)
+                return NotFound();
+            _context.Attendances.Remove(att);
+            _context.SaveChanges();
+            return Ok(id);
+        }
     }
 }
