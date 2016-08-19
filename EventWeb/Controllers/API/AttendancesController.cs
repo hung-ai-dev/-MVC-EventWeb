@@ -17,16 +17,16 @@ namespace EventWeb.Controllers.API
         }
 
         [HttpPost]
-        public IHttpActionResult Attend(AttendanceDto dto)
+        public IHttpActionResult Attend(int id)
         {
             var userId = User.Identity.GetUserId();
 
-            if (_context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == dto.GigId))
+            if (_context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == id))
                 return BadRequest("The attendance already exists");
 
             var attendance = new Attendance()
             {
-                GigId = dto.GigId,
+                GigId = id,
                 AttendeeId = User.Identity.GetUserId()
             };
             _context.Attendances.Add(attendance);

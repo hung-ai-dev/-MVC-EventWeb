@@ -44,8 +44,7 @@ namespace EventWeb.Controllers
             var gigs = _context.Gigs.Where(u => u.ArtistId == userId && u.DateTime > DateTime.Now && !u.IsCanceled)
                     .Include(g => g.Artist)
                     .Include(g => g.Genre).ToList();
-            foreach (var item in gigs)
-                Debug.WriteLine(item.Id);
+            
             return View(gigs);
         }
 

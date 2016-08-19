@@ -22,8 +22,6 @@ namespace EventWeb.Controllers
 
         public ActionResult Index(string query = null)
         {
-            Debug.WriteLine("Hello2");         
-
             var upcomingGig = _context.Gigs.Include(g => g.Artist)
                                             .Include(g => g.Genre)
                                             .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
