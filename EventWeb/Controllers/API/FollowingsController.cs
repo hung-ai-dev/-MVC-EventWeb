@@ -36,5 +36,17 @@ namespace EventWeb.Controllers.API
             _context.SaveChanges();
             return Ok();
         }
+
+        [HttpDelete]
+        public IHttpActionResult UnFollow(FollowingDto dto)
+        {
+            var userId = User.Identity.GetUserId();
+            var following = _context.Followings.SingleOrDefault(f => f.FollowerId == userId && f.FolloweeId == dto.FolloweeId);
+            if (following == null)
+                return NotFound();
+            _context.Followings.Remove(following);
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }

@@ -289,8 +289,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\Controllers\gigsController.js" />
-    <Content Include="Scripts\app\Services\attendanceService.js" />
+    <Content Include="Scripts\app\Controllers\GigsController.js" />
+    <Content Include="Scripts\app\Controllers\FollowingController.js" />
+    <Content Include="Scripts\app\Services\AttendanceService.js" />
+    <Content Include="Scripts\app\Services\FollowingService.js" />
     <Content Include="Scripts\lodash.core.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\underscore-min.js" />

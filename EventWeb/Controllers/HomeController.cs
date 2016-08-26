@@ -35,13 +35,16 @@ namespace EventWeb.Controllers
             var userId = User.Identity.GetUserId();
             var attendances = _context.Attendances.Where(a => a.AttendeeId == userId)
                 .ToList().ToLookup(a => a.GigId);
+            var followings = _context.Followings.Where(f => f.FollowerId == userId)
+                .ToList().ToLookup(f => f.FolloweeId);
 
             var viewModel = new GigsViewModel()
             {
                 UpComingGigs = upcomingGig,
                 ShowData = User.Identity.IsAuthenticated,
                 Heading = "Home",
-                AttendanceLookup = attendances
+                AttendanceLookup = attendances,
+                FollowingLookup = followings
             };
 
             return View("Gigs", viewModel);

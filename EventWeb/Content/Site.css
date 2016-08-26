@@ -159,6 +159,10 @@ h6,
                 width: 140px;
             }
 
+            .gigs > li .details .genre .btn {
+                margin-top: 15px;
+            }
+
         .gigs > li .date {
             -ms-border-radius: 10px;
             background-color: red;

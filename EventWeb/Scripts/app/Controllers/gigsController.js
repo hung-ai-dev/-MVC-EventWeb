@@ -1,13 +1,14 @@
-﻿var GigController = function (attendanceService) {
+﻿var GigsController = function (attendanceService) {
     var $button;
 
-    var init = function () {
-        $(".js-toggle-attendance").click(toggleAttendance);
+    var init = function (container) {
+        $(container).on("click", ".js-toggle-attendance", toggleAttendance);
     };
 
     var toggleAttendance = function toggleAttendance(e) {
         $button = $(e.target);
         var gigId = $button.attr("data-gig-info");
+
         if ($button.hasClass("btn-default")) {
             attendanceService.createAttendance(gigId, success, error);
         } else {

@@ -15,5 +15,6 @@ namespace EventWeb.ViewModels
         public string Heading { get; set; }
         public string SearchKey { get; set; }
         public ILookup<int, Attendance> AttendanceLookup { get; set; }
+        public ILookup<string, Following> FollowingLookup { get; set; }
     }
 }

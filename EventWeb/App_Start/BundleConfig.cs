@@ -8,11 +8,6 @@ namespace EventWeb
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                    "~/Scripts/app/Controllers/gigsController.js",
-                    "~/Scripts/app/Services/attendanceService.js"
-                ));
-
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/lodash.core.js",
@@ -36,6 +31,13 @@ namespace EventWeb
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/animate.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                    "~/Scripts/app/Services/AttendanceService.js",
+                    "~/Scripts/app/Services/FollowingService.js",
+                    "~/Scripts/app/Controllers/GigsController.js",
+                    "~/Scripts/app/Controllers/FollowingController.js"
+                ));
         }
     }
 }
