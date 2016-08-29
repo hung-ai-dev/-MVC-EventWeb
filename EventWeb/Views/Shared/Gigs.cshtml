@@ -40,13 +40,13 @@
                     <a href="@Url.Action("Details", "Gigs", new {id = @item.Id})">
                         @item.Artist.Name
                     </a>
-                    @if (Model.ShowData)
-                    {
-                        <button data-user-info="@item.ArtistId" class="pull-right btn btn-xs js-toggle-follow
-                                @(Model.FollowingLookup.Contains(item.ArtistId) ? "btn-info": "btn-link")">
-                            @(Model.FollowingLookup.Contains(item.ArtistId) ? "Following" : "Follow")
-                        </button>
-                    }
+                    @*if (Model.ShowData)
+                        {
+                            <button data-user-info="@item.ArtistId" class="pull-right btn btn-xs js-toggle-follow
+                                    @(Model.FollowingLookup.Contains(item.ArtistId) ? "btn-info": "btn-link")">
+                                @(Model.FollowingLookup.Contains(item.ArtistId) ? "Following" : "Follow")
+                            </button>
+                        }*@
                 </span>
                 <span class="genre">
                     @item.Genre.Name
@@ -66,7 +66,6 @@
     <script>
         $(document).ready(function () {
             GigsController.init("#gigs");
-            FollowingController.init("#gigs");
         });
     </script>
 }

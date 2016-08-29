@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using EventWeb.Models;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Globalization;
+using EventWeb.Repositories;
 using Microsoft.ApplicationInsights.Web;
 
 namespace EventWeb.Controllers
@@ -14,24 +16,29 @@ namespace EventWeb.Controllers
     public class GigsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly GigRepository _gigRepository;
+        private readonly AttendanceRepository _attendanceRepository;
+        private readonly FollowingRepository _followingRepository;
 
         public GigsController()
         {
             _context = new ApplicationDbContext();
+            _gigRepository = new GigRepository(_context);
+            _attendanceRepository = new AttendanceRepository(_context);
+            _followingRepository = new FollowingRepository(_context);
         }
 
         [Authorize]
         public ActionResult Attending()
         {
             var userId = User.Identity.GetUserId();
-            var gigs = _context.Attendances.Where(u => u.AttendeeId == userId).Select(g => g.Gig)
-                .Include(g => g.Artist).Include(g => g.Genre).ToList();
-            
+
             var viewModel = new GigsViewModel()
             {
-                UpComingGigs = gigs,
+                UpComingGigs = _gigRepository.GetGigAttendance(userId),
                 ShowData = User.Identity.IsAuthenticated,
-                Heading = "Going"
+                Heading = "Going",
+                AttendanceLookup = _attendanceRepository.GetFutureAttendance(userId).ToLookup(a => a.GigId)
             };
 
             return View("Gigs", viewModel);
@@ -101,8 +108,12 @@ namespace EventWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs.Single(g => g.ArtistId == userId && g.Id == id);
+            var gig = _gigRepository.GetGig(id);
+
+            if (gig == null)
+                return HttpNotFound();
+            if (gig.ArtistId != User.Identity.GetUserId())
+                return new HttpUnauthorizedResult();
 
             var viewModel = new GigFormViewModel()
             {
@@ -127,10 +138,12 @@ namespace EventWeb.Controllers
                 return View("GigForm", viewModel);
             }
 
-            var userId = User.Identity.GetUserId();
-            var gig = _context.Gigs
-                .Include(g => g.Attendances.Select(a => a.Attendee))
-                .Single(g => g.Id == viewModel.Id && g.ArtistId == userId);
+            var gig = _gigRepository.GetGigWithAttendance(viewModel.Id);
+
+            if (gig == null)
+                return HttpNotFound();
+            if (gig.ArtistId != User.Identity.GetUserId())
+                return new HttpUnauthorizedResult();
 
             gig.Modify(viewModel.GetDateTime(), viewModel.Venue, viewModel.Genre);
 
@@ -147,18 +160,15 @@ namespace EventWeb.Controllers
 
         public ActionResult Details(int id)
         {
-            var gig = _context.Gigs
-                .Include(g => g.Artist)
-                .Include(g => g.Genre)
-                .SingleOrDefault(g => g.Id == id);
+            var gig = _gigRepository.GetGigWithArtistAndGenre(id);
             if (gig == null)
                 return HttpNotFound();
             var userId = User.Identity.GetUserId();
             var details = new GigDetailsViewModel()
             {
                 Gig = gig,
-                IsAttending = _context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == id),
-                IsFollowing = _context.Followings.Any(a => a.FolloweeId == gig.ArtistId && a.FollowerId == userId)
+                IsAttending = _attendanceRepository.GetAttendance(id, userId) != null,
+                IsFollowing = _followingRepository.GetFollowing(gig.ArtistId, userId) != null
             };
             return View(details);
         }
