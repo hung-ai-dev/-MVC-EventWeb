@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Globalization;
+using EventWeb.Persistence;
 using EventWeb.Repositories;
 using Microsoft.ApplicationInsights.Web;
 
@@ -19,6 +20,7 @@ namespace EventWeb.Controllers
         private readonly GigRepository _gigRepository;
         private readonly AttendanceRepository _attendanceRepository;
         private readonly FollowingRepository _followingRepository;
+        private readonly UnitOfWork _unitOfWork;
 
         public GigsController()
         {
@@ -26,6 +28,7 @@ namespace EventWeb.Controllers
             _gigRepository = new GigRepository(_context);
             _attendanceRepository = new AttendanceRepository(_context);
             _followingRepository = new FollowingRepository(_context);
+            _unitOfWork = new UnitOfWork(_context);
         }
 
         [Authorize]
@@ -101,7 +104,7 @@ namespace EventWeb.Controllers
             };
 
             _context.Gigs.Add(gig);
-            _context.SaveChanges();
+            _unitOfWork.Complete();
             return RedirectToAction("Mine", "Gigs");
         }
 
@@ -147,7 +150,7 @@ namespace EventWeb.Controllers
 
             gig.Modify(viewModel.GetDateTime(), viewModel.Venue, viewModel.Genre);
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
             return RedirectToAction("Mine", "Gigs");
         }
 
