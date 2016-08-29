@@ -17,17 +17,12 @@ namespace EventWeb.Controllers
     public class GigsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly GigRepository _gigRepository;
-        private readonly AttendanceRepository _attendanceRepository;
-        private readonly FollowingRepository _followingRepository;
+        
         private readonly UnitOfWork _unitOfWork;
 
         public GigsController()
         {
             _context = new ApplicationDbContext();
-            _gigRepository = new GigRepository(_context);
-            _attendanceRepository = new AttendanceRepository(_context);
-            _followingRepository = new FollowingRepository(_context);
             _unitOfWork = new UnitOfWork(_context);
         }
 
@@ -38,10 +33,10 @@ namespace EventWeb.Controllers
 
             var viewModel = new GigsViewModel()
             {
-                UpComingGigs = _gigRepository.GetGigAttendance(userId),
+                UpComingGigs = _unitOfWork.GigRepository.GetGigAttendance(userId),
                 ShowData = User.Identity.IsAuthenticated,
                 Heading = "Going",
-                AttendanceLookup = _attendanceRepository.GetFutureAttendance(userId).ToLookup(a => a.GigId)
+                AttendanceLookup = _unitOfWork.AttendanceRepository.GetFutureAttendance(userId).ToLookup(a => a.GigId)
             };
 
             return View("Gigs", viewModel);
@@ -78,7 +73,7 @@ namespace EventWeb.Controllers
         {
             GigFormViewModel viewModel = new GigFormViewModel()
             {
-                Genres = _context.Genres.ToList(),
+                Genres = _unitOfWork.GenreRepository.GetGenres(),
                 Heading = "Add a Event"
             };
            
@@ -91,7 +86,7 @@ namespace EventWeb.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Genres = _context.Genres.ToList();
+                viewModel.Genres = _unitOfWork.GenreRepository.GetGenres();
                 return View("GigForm", viewModel);
             }
 
@@ -111,7 +106,7 @@ namespace EventWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var gig = _gigRepository.GetGig(id);
+            var gig = _unitOfWork.GigRepository.GetGig(id);
 
             if (gig == null)
                 return HttpNotFound();
@@ -121,7 +116,7 @@ namespace EventWeb.Controllers
             var viewModel = new GigFormViewModel()
             {
                 Id = gig.Id,
-                Genres = _context.Genres.ToList(),
+                Genres = _unitOfWork.GenreRepository.GetGenres(),
                 Venue = gig.Venue,
                 Date = gig.DateTime.ToString("d/MMM/yyyy", CultureInfo.CreateSpecificCulture("en-us")),
                 Time = gig.DateTime.ToString("HH:mm"),
@@ -137,11 +132,11 @@ namespace EventWeb.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Genres = _context.Genres.ToList();
+                viewModel.Genres = _unitOfWork.GenreRepository.GetGenres();
                 return View("GigForm", viewModel);
             }
 
-            var gig = _gigRepository.GetGigWithAttendance(viewModel.Id);
+            var gig = _unitOfWork.GigRepository.GetGigWithAttendance(viewModel.Id);
 
             if (gig == null)
                 return HttpNotFound();
@@ -163,15 +158,16 @@ namespace EventWeb.Controllers
 
         public ActionResult Details(int id)
         {
-            var gig = _gigRepository.GetGigWithArtistAndGenre(id);
+            var gig = _unitOfWork.GigRepository.GetGigWithArtistAndGenre(id);
             if (gig == null)
                 return HttpNotFound();
+
             var userId = User.Identity.GetUserId();
             var details = new GigDetailsViewModel()
             {
                 Gig = gig,
-                IsAttending = _attendanceRepository.GetAttendance(id, userId) != null,
-                IsFollowing = _followingRepository.GetFollowing(gig.ArtistId, userId) != null
+                IsAttending = _unitOfWork.AttendanceRepository.GetAttendance(id, userId),
+                IsFollowing = _unitOfWork.FollowingRepository.GetFollowing(gig.ArtistId, userId)
             };
             return View(details);
         }
