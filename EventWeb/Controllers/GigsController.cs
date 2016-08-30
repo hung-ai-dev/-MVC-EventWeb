@@ -16,14 +16,11 @@ namespace EventWeb.Controllers
 {
     public class GigsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public GigsController()
         {
-            _context = new ApplicationDbContext();
-            _unitOfWork = new UnitOfWork(_context);
+            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
         }
 
         [Authorize]
@@ -46,9 +43,7 @@ namespace EventWeb.Controllers
         public ActionResult Mine()
         {
             var userId = User.Identity.GetUserId();
-            var gigs = _context.Gigs.Where(u => u.ArtistId == userId && u.DateTime > DateTime.Now && !u.IsCanceled)
-                    .Include(g => g.Artist)
-                    .Include(g => g.Genre).ToList();
+            var gigs = _unitOfWork.GigRepository.GetMineGigs(userId);
             
             return View(gigs);
         }
@@ -57,7 +52,7 @@ namespace EventWeb.Controllers
         public ActionResult Following()
         {
             var userId = User.Identity.GetUserId();
-            var followees = _context.Followings.Where(u => u.FollowerId == userId).Select(g => g.Followee).ToList();
+            var followees = _unitOfWork.FollowingRepository.GetMineFollowing(userId);
             var viewModel = new FollowingsViewModel()
             {
                 Followees = followees,
@@ -98,7 +93,7 @@ namespace EventWeb.Controllers
                 DateTime = viewModel.GetDateTime()
             };
 
-            _context.Gigs.Add(gig);
+            _unitOfWork.GigRepository.Add(gig);
             _unitOfWork.Complete();
             return RedirectToAction("Mine", "Gigs");
         }

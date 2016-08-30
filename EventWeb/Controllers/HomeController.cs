@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EventWeb.Models;
+using EventWeb.Persistence;
 using EventWeb.Repositories;
 using EventWeb.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -15,19 +16,19 @@ namespace EventWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly AttendanceRepository _attendanceRepository;
 
         public HomeController()
         {
             _context = new ApplicationDbContext();
-            _attendanceRepository = new AttendanceRepository(_context);
+            _unitOfWork = new UnitOfWork(_context);
         }
 
         public ActionResult Index(string query = null)
         {
-            var upcomingGig = _context.Gigs.Include(g => g.Artist)
-                                            .Include(g => g.Genre)
-                                            .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled);
+            var upcomingGig = _unitOfWork.GigRepository.GetUpcomingGig();
+
             if (!String.IsNullOrWhiteSpace(query))
             {
                 upcomingGig = upcomingGig.Where(g => g.Artist.Name.Contains(query) ||

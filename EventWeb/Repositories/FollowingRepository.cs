@@ -6,7 +6,7 @@ using EventWeb.Models;
 
 namespace EventWeb.Repositories
 {
-    public class FollowingRepository
+    public class FollowingRepository : IFollowingRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -20,5 +20,9 @@ namespace EventWeb.Repositories
             return _context.Followings.Any(a => a.FolloweeId == artistId && a.FollowerId == userId);
         }
 
+        public List<ApplicationUser> GetMineFollowing(string userId)
+        {
+            return _context.Followings.Where(u => u.FollowerId == userId).Select(g => g.Followee).ToList();
+        }
     }
 }

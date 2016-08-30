@@ -7,13 +7,13 @@ using EventWeb.Repositories;
 
 namespace EventWeb.Persistence
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        public GigRepository GigRepository { get; private set; }
-        public AttendanceRepository AttendanceRepository { get; private set; }
-        public FollowingRepository FollowingRepository { get; private set; }
-        public GenreRepository GenreRepository { get; private set; }
+        public IGigRepository GigRepository { get; private set; }
+        public IAttendanceRepository AttendanceRepository { get; private set; }
+        public IFollowingRepository FollowingRepository { get; private set; }
+        public IGenreRepository GenreRepository { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
