@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using EventWeb.Models;
 using EventWeb.ViewModels;
 using System.Linq;
@@ -9,8 +6,6 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Globalization;
 using EventWeb.Persistence;
-using EventWeb.Repositories;
-using Microsoft.ApplicationInsights.Web;
 
 namespace EventWeb.Controllers
 {
@@ -18,9 +13,9 @@ namespace EventWeb.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GigsController()
+        public GigsController(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
+            _unitOfWork = unitOfWork;
         }
 
         [Authorize]

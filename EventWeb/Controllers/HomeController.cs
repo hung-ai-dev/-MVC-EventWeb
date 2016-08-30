@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using EventWeb.Models;
 using EventWeb.Persistence;
-using EventWeb.Repositories;
 using EventWeb.ViewModels;
 using Microsoft.AspNet.Identity;
 
@@ -17,12 +12,11 @@ namespace EventWeb.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly AttendanceRepository _attendanceRepository;
 
-        public HomeController()
+        public HomeController(IUnitOfWork unitOfWork)
         {
             _context = new ApplicationDbContext();
-            _unitOfWork = new UnitOfWork(_context);
+            _unitOfWork = unitOfWork;
         }
 
         public ActionResult Index(string query = null)
@@ -37,7 +31,7 @@ namespace EventWeb.Controllers
             };
 
             var userId = User.Identity.GetUserId();
-            var attendances = _attendanceRepository.GetFutureAttendance(userId).ToLookup(a => a.GigId);
+            var attendances = _unitOfWork.AttendanceRepository.GetFutureAttendance(userId).ToLookup(a => a.GigId);
 
             var viewModel = new GigsViewModel()
             {

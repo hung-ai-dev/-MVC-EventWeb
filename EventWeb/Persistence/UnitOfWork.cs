@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using EventWeb.Models;
+﻿using EventWeb.Models;
 using EventWeb.Repositories;
 
 namespace EventWeb.Persistence

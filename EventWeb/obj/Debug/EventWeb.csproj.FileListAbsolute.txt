@@ -98,3 +98,14 @@ E:\VisualStudioProject\EventWeb\EventWeb\bin\AutoMapper.dll
 E:\VisualStudioProject\EventWeb\EventWeb\bin\AutoMapper.xml
 E:\VisualStudioProject\EventWeb\EventWeb\bin\nunit.framework.dll
 E:\VisualStudioProject\EventWeb\EventWeb\bin\nunit.framework.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Extensions.Conventions.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Web.Common.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Web.Mvc.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Web.WebApi.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\WebActivatorEx.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Extensions.Conventions.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Web.Common.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Web.Mvc.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Web.WebApi.xml
