@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using EventWeb.Models;
+using EventWeb.Core.Dtos;
+using EventWeb.Core.Models;
+using EventWeb.Core.Repositories;
+using EventWeb.Core.ViewModels;
 using EventWeb.Persistence;
-using EventWeb.ViewModels;
 using Microsoft.AspNet.Identity;
 
 namespace EventWeb.Controllers

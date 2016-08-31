@@ -3,38 +3,39 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
-using EventWeb.Dtos;
-using EventWeb.Models;
+using EventWeb.Core.Dtos;
+using EventWeb.Core.Models;
+using EventWeb.Persistence;
 using Microsoft.AspNet.Identity;
 
 namespace EventWeb.Controllers.API
 {
     public class GigsController : ApiController
     {
-        private ApplicationDbContext _context;
+        private IUnitOfWork _unitOfWork;
 
-        public GigsController()
+        public GigsController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         [HttpDelete]
         public IHttpActionResult Cancel(GigDto gigDto)
         {
-            Debug.WriteLine(gigDto.GigId);
             var userId = User.Identity.GetUserId();
 
-            var gig = _context.Gigs
-                .Include(g => g.Attendances.Select(a => a.Attendee))
-                .Single(g => g.Id == gigDto.GigId && g.ArtistId == userId);
+            var gig = _unitOfWork.GigRepository.GetGigWithAttendee(gigDto.GigId);
 
             if (gig.IsCanceled)
                 return NotFound();
+            if (gig.ArtistId != userId)
+                return Unauthorized();
 
             gig.Cancel();
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
             return Ok();
         }
+
     }
 }

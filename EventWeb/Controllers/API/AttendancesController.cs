@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Web.Http;
-using EventWeb.Dtos;
-using EventWeb.Models;
+using EventWeb.Core.Models;
+using EventWeb.Persistence;
 using Microsoft.AspNet.Identity;
 
 namespace EventWeb.Controllers.API

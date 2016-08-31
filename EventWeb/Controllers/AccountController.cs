@@ -5,11 +5,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using EventWeb.Core.Models;
+using EventWeb.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using EventWeb.Models;
-using EventWeb.ViewModels;
 
 namespace EventWeb.Controllers
 {

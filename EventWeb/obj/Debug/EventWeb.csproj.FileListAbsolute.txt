@@ -109,3 +109,11 @@ E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Extensions.Conventions.xml
 E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Web.Common.xml
 E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Web.Mvc.xml
 E:\VisualStudioProject\EventWeb\EventWeb\bin\Ninject.Web.WebApi.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\FluentAssertions.Core.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\FluentAssertions.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Moq.dll
+E:\VisualStudioProject\EventWeb\EventWeb\bin\FluentAssertions.pdb
+E:\VisualStudioProject\EventWeb\EventWeb\bin\FluentAssertions.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\FluentAssertions.Core.pdb
+E:\VisualStudioProject\EventWeb\EventWeb\bin\FluentAssertions.Core.xml
+E:\VisualStudioProject\EventWeb\EventWeb\bin\Moq.xml

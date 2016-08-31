@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
-using EventWeb.Models;
-using EventWeb.Dtos;
+using EventWeb.Core.Dtos;
+using EventWeb.Core.Models;
 
 namespace EventWeb.App_Start
 {

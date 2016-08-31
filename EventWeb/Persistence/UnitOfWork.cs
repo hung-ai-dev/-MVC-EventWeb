@@ -1,5 +1,7 @@
-﻿using EventWeb.Models;
-using EventWeb.Repositories;
+﻿using EventWeb.Core.Dtos;
+using EventWeb.Core.Models;
+using EventWeb.Core.Repositories;
+using EventWeb.Persistence.Repositories;
 
 namespace EventWeb.Persistence
 {
